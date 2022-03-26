@@ -1,11 +1,17 @@
 package Classes;
 
+import java.util.ArrayList;
+import java.util.Scanner;
+
 public class Hospede {
     
     private int codigo;
     private String nome;
     private String endereco;
     private int idade;
+    
+    private ArrayList<Hospede> listaHospede = new ArrayList();
+    Scanner ler = new Scanner(System.in);
 
     public Hospede(){
 
@@ -17,7 +23,7 @@ public class Hospede {
             this.endereco = endereco;
             this.idade = idade;
     }
-
+    
     public int getCodigo() {
         return codigo;
     }
@@ -48,5 +54,15 @@ public class Hospede {
     
     public void setIdade(int idade) {
         this.idade = idade;
-    }    
+    }
+
+    public ArrayList<Hospede> getListaHospede() {
+        return listaHospede;
+    }
+
+    public void setListaHospede(ArrayList<Hospede> listaHospede) {
+        this.listaHospede = listaHospede;
+    }
+
+    
 }

@@ -1,8 +1,7 @@
 package Classes;
 
-import Classes.Hospede;
-import Classes.Suite;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Reserva {
     
@@ -10,6 +9,9 @@ public class Reserva {
     private Suite suite;
     private int quantidadePessoas;
     private int quantidadeDias;
+    
+    Scanner ler = new Scanner(System.in);
+    Reserva reserva = new Reserva();
 
     public Reserva(){
         
@@ -19,6 +21,47 @@ public class Reserva {
         this.suite = suite;
         this.quantidadePessoas = quantidadePessoas;
         this.quantidadeDias = quantidadeDias;
+    }
+    
+    public String verificarCapacidade(Suite suite){
+        System.out.println("Digite a quantidade de Hóspedes maiores que 2 anos de idade : ");
+        int aux = ler.nextInt();
+        
+        if(aux<= suite.getCapacidade()){
+            System.out.println("Ok, o a suíte atende a necessidade!");
+            return "ok";
+        }else{
+            System.out.println("Que pena a suíte não atende a necessidade, tente novamente!");
+            return null;
+        }
+        
+    }
+    
+    public void calcularDiaria(Suite suite){
+        System.out.println("Quantos dias deseja permanecer na suíte? : ");
+        int aux = ler.nextInt();
+        double total =0;
+        if(aux>7){
+         total = (aux*suite.getValorDiaria())*0.9;   
+        }else{
+         total = aux*suite.getValorDiaria();   
+        }
+        
+        System.out.println("O valor final da Diária será de: R$"+total);
+        
+    }
+    
+    public void realizarReserva(){
+        System.out.println("Digite o número da Suíte : ");
+        int aux = ler.nextInt();
+        
+        int n = suite.listaSuite().size();
+        for (int i=0; i<n; i++) {
+            if(aux==suite.getListaSuite().get(i).getNumero()){
+                reserva.verificarCapacidade(suite.getListaSuite().get(i));
+                reserva.calcularDiaria(suite.getListaSuite().get(i));
+            }
+        }
     }
 
     public ArrayList<Hospede> getHospedes() {
